@@ -1,8 +1,20 @@
 table td {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: 1px;
-  background-color: black;
+  background-color: #4899F7;
+}
+
+table td.alive {
+  background-color: #201D1D;
+}
+
+table td.destroy {
+  background-color: #BB2323;
+}
+
+table td.miss {
+  background: url("../img/miss_case.png");
 }
 
 table#enemy_field {
@@ -10,6 +22,11 @@ table#enemy_field {
 }
 
 table#enemy_field td:hover {
-  background-color: violet !important;
+  background-color: violet;
+}
+
+div {
+  background-color: black;
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */

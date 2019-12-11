@@ -1,12 +1,23 @@
-const Statistic = require('./statistic');
+const Statistic = require('./statistic').Statistic;
+const Grid = require('./grid').Grid;
+const Grid_player = require('./grid').Grid_player;
 
 module.exports = class Player{
-    constructor(){
-        this.name = "";
-        this.grid = "hello";
-        this.enemyGrid = "";
+    constructor(name){
+        this.name = name;
+        this.grid_player = new Grid_player();
+        this.grid_enemy = new Grid();
         this.statistic = new Statistic();
+        console.log(this);
     }
 
-    set_name(name){ this.name = name;}
+    add_ship(){
+        this.grid_player.add_ship();
+        console.log(this.grid_player);
+    }
+
+    get_grid() {
+        return this.grid_player.get_coordinate();
+    }
+
 };

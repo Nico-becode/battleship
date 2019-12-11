@@ -1,18 +1,38 @@
+$cell_color: #4899F7;
+$alive_color: #201D1D;
+$destroy_color: #BB2323;
+
 table {
 
     td {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         border: 1px;
-        background-color: black;
-    
+        background-color: $cell_color;
+        
+        &.alive {
+            background-color: $alive_color;
+        }
+
+        &.destroy {
+            background-color: $destroy_color;
+        }
+
+        &.miss {
+            background: url('../img/miss_case.png')
+        }
     }
 
     &#enemy_field {
         td:hover {
-            background-color: violet !important;
+            background-color: violet;
         }
         background-color: red;
     }
     
+}
+
+div {
+    background-color: black;
+    color: white;
 }

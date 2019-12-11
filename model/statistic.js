@@ -1,4 +1,4 @@
-module.exports = class Statistic {
+class Statistic {
     constructor(){
         this.win = 0;
         this.lose = 0;
@@ -12,4 +12,8 @@ module.exports = class Statistic {
     set_win(amount) { this.win += amount;}
     set_lose(amount) { this.lose += amount;}
     set_total(amount) { this.total += amount;}
+}
+
+module.exports = {
+    Statistic: Statistic
 }

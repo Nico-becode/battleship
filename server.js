@@ -11,8 +11,9 @@ const PORT = 8769;
 
 const createGame = (username) => {
         const game = new Game();
-        game.add_player('player', username);
-        console.log(game)
+        game.add_player(0, username);
+        game.add_player(1, 'Bot_1')
+        game.add_ship(0);
         return game;
 };
 
@@ -23,7 +24,10 @@ IO.sockets.on('connection', (socket) => {
     
     socket.on('username', (username) => {
         game = createGame(username);
+        const grid = game.get_grid(0);
+        socket.emit('diplay_grid', JSON.stringify(grid));
     });
+
     socket.on('shoot', () => {
         console.log(game);
     });
