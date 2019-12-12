@@ -36,8 +36,8 @@ IO.sockets.on('connection', (socket) => {
         socket.emit('diplay_grid', JSON.stringify(grid));
     });
 
-    socket.on('shoot', () => {
-        console.log(game);
+    socket.on('shoot', (coordinate) => {
+        console.log(coordinate);
     });
 });
 

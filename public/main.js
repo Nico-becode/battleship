@@ -21,10 +21,23 @@
         }
     });
 
-    const shoot = (event) => {
-
-        document.getElementById('enemy_field').removeEventListener('click', shoot);
-        SOCKET.emit('shoot');
+    const shoot = (x, y) => {
+        const coordinate = `${x} ${y}`
+        SOCKET.emit('shoot', coordinate);
     };
-    document.getElementById('enemy_field').addEventListener('click', shoot, event);
+
+    let turn = true;
+    $('#enemy_field').on('click', (event) => {
+        if (turn) {
+            turn = false;
+            const $td = $(event.target).closest('td');
+            const $tr = $(event.target).closest('tr')
+            const x = $tr[0].rowIndex;
+            const y = $td[0].cellIndex;
+            console.log($td, y);
+            console.log($tr, x);
+            shoot(x, y);
+        }
+        
+    });
 })();
