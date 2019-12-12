@@ -1,26 +1,31 @@
 const Statistic = require('./statistic').Statistic;
 const Grid = require('./grid').Grid;
-const Grid_player = require('./grid').Grid_player;
 
-module.exports = class Player{
+class Player{
     constructor(name){
         this.name = name;
-        this.grid_player = new Grid_player();
-        this.grid_enemy = new Grid();
+        this.grid = new Grid();
         this.statistic = new Statistic();
     }
 
     // add_ship(){
-    //     this.grid_player.add_ship();
-    //     console.log(this.grid_player);
+    //     this.grid.add_ship();
+    //     console.log(this.grid);
     // }
 
     get_grid() {
-        return this.grid_player.get_coordinate();
+        return this.grid.get_coordinate();
     }
 
     random_grid(){
-        this.grid_player.random_grid();
+        this.grid.random_grid();
     }
-
+    hit(coordinate){
+        const data = this.grid.hit(coordinate);
+        return data;
+    }
 };
+
+module.exports = {
+    Player: Player
+}

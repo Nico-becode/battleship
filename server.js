@@ -1,5 +1,5 @@
 //import class
-const Game = require('./model/game');
+const Game = require('./model/game').Game;
 
 //import modules
 const EXPRESS = require('express');
@@ -36,8 +36,20 @@ IO.sockets.on('connection', (socket) => {
         socket.emit('diplay_grid', JSON.stringify(grid));
     });
 
-    socket.on('shoot', (coordinate) => {
-        console.log(coordinate);
+    socket.on('shot', (coordinate) => {
+        const shot = game.shoot(coordinate, 1);
+        console.log(shot, coordinate);
+
+        if (!shot.use){
+            socket.emit('display_shoot', JSON.stringify(shot.shot));
+        }
+        else {
+            //player retry his shoot
+        }
+        const data = {
+            turn: true
+        }
+        socket.emit('your_turn', JSON.stringify(data));
     });
 });
 

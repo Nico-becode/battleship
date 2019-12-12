@@ -4,12 +4,6 @@ class Grid{
     constructor(){
         this.length = 10;
         this.hit_cases = {};
-    }
-}
-
-class Grid_player extends Grid{
-    constructor(){
-        super();
         this.ships = [];
     }
 
@@ -32,6 +26,20 @@ class Grid_player extends Grid{
         });
         cases = {...cases, ...this.hit_cases}
         return cases;
+    }
+
+    in_hit_cases(coordinate){
+        let result = false;
+        if (this.hit_cases[coordinate] != undefined) {
+            result = true;
+        }
+        return result;
+    }
+
+    add_hit_cases(data_case){
+        for(let key in data_case){
+            this.hit_cases[key] = data_case[key];
+        }
     }
 
     random_grid(){
@@ -87,9 +95,31 @@ class Grid_player extends Grid{
         }
         return result;
     }
+
+    hit(coordinate){
+        let data = {
+            shot: {},
+            use: false
+        }
+        if (!this.in_hit_cases(coordinate)){
+            data.shot[coordinate] = "miss";
+            for (let i = 0; i < this.ships.length; i++){
+                if (this.ships[i].is_case_used(data.shot)){
+                    data.shot[coordinate] = "destroy";
+                    this.ships[i].dec_health_point();
+                    break;
+                }
+            }
+        }
+        else {
+            data.use = true;
+        }
+
+        this.add_hit_cases(data.shot);
+        return data;
+    }
 }
 
 module.exports = {
     Grid: Grid,
-    Grid_player: Grid_player
 }

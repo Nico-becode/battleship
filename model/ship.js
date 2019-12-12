@@ -27,6 +27,8 @@ class Ship{
     set_ship_case(list_coord){        
         this.ship_case = list_coord;
     }
+
+    dec_health_point(){ this.health_point--;}
 }
 
 module.exports = {

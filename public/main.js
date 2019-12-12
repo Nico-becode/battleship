@@ -21,23 +21,57 @@
         }
     });
 
+    SOCKET.on('display_shoot', (json_shot) => {
+        const shot = JSON.parse(json_shot);
+        display_shot(shot);
+    });
+
+    SOCKET.on('your_turn', (json_data) => {
+        const data = JSON.parse(json_data);
+        turn = data.turn;
+    });
+
     const shoot = (x, y) => {
         const coordinate = `${x} ${y}`
-        SOCKET.emit('shoot', coordinate);
+        SOCKET.emit('shot', coordinate);
+    };
+
+    const display_shot = (shot) => {
+        const own_field = document.querySelector('#enemy_field tbody');
+        for (let key in shot){
+            const coord = key.split(' ');
+            const x = parseInt(coord[0]), y = parseInt(coord[1]);
+            const cell = own_field.children[x].children[y];
+            switch(shot[key]){
+                case 'miss':
+                    cell.className = 'miss';
+                    break;
+                case 'destroy':
+                    cell.className = 'destroy';
+                    break;
+            }
+        }
     };
 
     let turn = true;
     $('#enemy_field').on('click', (event) => {
-        if (turn) {
-            turn = false;
+        try {
+            
             const $td = $(event.target).closest('td');
             const $tr = $(event.target).closest('tr')
             const x = $tr[0].rowIndex;
             const y = $td[0].cellIndex;
-            console.log($td, y);
-            console.log($tr, x);
-            shoot(x, y);
+            console.log('hello')
+            if (turn) {
+                turn = false;
+                shoot(x, y);
+            }
         }
+        catch(e){
+            //do nothing
+        }
+        
+        
         
     });
 })();

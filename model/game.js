@@ -1,6 +1,6 @@
-const Player = require('./player');
+const Player = require('./player').Player;
 
-module.exports = class Game {
+class Game {
     constructor() {
         this.players = [null, null];
         this.turn = null;
@@ -24,5 +24,11 @@ module.exports = class Game {
             this.players[i].random_grid();
         }
     }
-
+    shoot(coordinate, player) {
+        return this.players[player].hit(coordinate);
+    }
 };
+
+module.exports = {
+    Game: Game 
+}
