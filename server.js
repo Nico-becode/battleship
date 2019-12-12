@@ -6,14 +6,22 @@ const EXPRESS = require('express');
 const APP = EXPRESS();
 const SERVER = require('http').createServer(APP)
 const IO = require('socket.io').listen(SERVER);
+const ENT = require('ent');
 
 const PORT = 8769;
 
 const createGame = (username) => {
         const game = new Game();
-        game.add_player(0, username);
+        game.add_player(0, ENT.encode(username));
         game.add_player(1, 'Bot_1')
-        game.add_ship(0);
+        try {
+            game.random_generate();
+        }
+        catch(e) {
+            console.error(e);
+        }
+        
+        // game.add_ship(0);
         return game;
 };
 

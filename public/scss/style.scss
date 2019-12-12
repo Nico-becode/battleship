@@ -1,6 +1,7 @@
 $cell_color: #4899F7;
 $alive_color: #201D1D;
 $destroy_color: #BB2323;
+$enemy_color: #E1E0E0;
 
 table {
 
@@ -25,14 +26,14 @@ table {
 
     &#enemy_field {
         td:hover {
-            background-color: violet;
+            border-color: violet;
         }
-        background-color: red;
     }
     
 }
 
 div {
-    background-color: black;
-    color: white;
+    &#enemy {
+        background-color: $enemy_color;
+    }
 }

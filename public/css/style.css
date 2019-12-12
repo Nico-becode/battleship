@@ -17,16 +17,11 @@ table td.miss {
   background: url("../img/miss_case.png");
 }
 
-table#enemy_field {
-  background-color: red;
-}
-
 table#enemy_field td:hover {
-  background-color: violet;
+  border-color: violet;
 }
 
-div {
-  background-color: black;
-  color: white;
+div#enemy {
+  background-color: #E1E0E0;
 }
 /*# sourceMappingURL=style.css.map */
