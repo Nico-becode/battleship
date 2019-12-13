@@ -32,6 +32,4 @@ If i have time, i will:
 
 ## Mock-ups
 
-![battleship game][mockups]
-
-[mockups]: plublic/img/mockups.png
+![battleship game](plublic/img/mockups.png)
