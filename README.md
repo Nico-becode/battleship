@@ -38,7 +38,20 @@ If i have time, i will:
 
 ## UML
 
-old UML for representing the class
+old UML for representing the class:
 ![class diagram][uml]
 
+Update uml here:
+In construction
+![construction][construction]
+
 [uml]: public/img/uml.png
+[construction]: https://media.giphy.com/media/l3vQYe7l1TInypnYA/giphy.gif
+
+## Front-end tool
+
+figma: mock-ups
+
+## Back-end tool
+- npm
+- GenMymodel: uml

@@ -8,7 +8,7 @@ const SERVER = require('http').createServer(APP)
 const IO = require('socket.io').listen(SERVER);
 const ENT = require('ent');
 
-const PORT = 8769;
+const PORT = process.env.PORT || 8769;
 let count = 0;
 
 const createGame = (username) => {
