@@ -15,10 +15,6 @@ class Game {
 
     }
 
-    // add_ship(player){
-    //     this.players[player].add_ship();
-    // }
-
     get_grid(player){
         return this.players[player].get_grid();
     }

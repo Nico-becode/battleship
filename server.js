@@ -22,7 +22,6 @@ const createGame = (username) => {
             console.error(e);
         }
         
-        // game.add_ship(0);
         return game;
 };
 
@@ -35,8 +34,6 @@ IO.sockets.on('connection', (socket) => {
         game = createGame(username);
         const grid = game.get_grid(0);
         socket.emit('diplay_grid', JSON.stringify(grid));
-        // const test = game.players[1].grid.ships;
-        // socket.emit('test', JSON.stringify(test));
     });
 
     socket.on('shot', (coordinate) => {

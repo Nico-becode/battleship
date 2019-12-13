@@ -21,10 +21,6 @@
         }
     });
 
-    // SOCKET.on('test', (json_test) => {
-    //     console.log(JSON.parse(json_test));
-    // });
-
     SOCKET.on('display_shoot', (json_shot) => {
         const shot = JSON.parse(json_shot);
         display_shot(shot);

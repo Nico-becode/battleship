@@ -1,22 +1,23 @@
 const Ship = require('./ship').Ship;
 
 class Grid{
+    /*
+        Represent the grid of a player in the Battleship game
+        It will have
+            length: size of a board
+            hit_case: the cases hit by the enemy
+            ships: a list of ships on the grid
+    */
     constructor(){
         this.length = 10;
         this.hit_cases = {};
         this.ships = [];
     }
 
-    // add_ship(){
-    //     for(let i = 0; i < 5; i++){
-    //         const ship = new Ship();
-    //         ship.place_ship(i);
-    //         this.ships.push(ship); 
-    //     }
-        
-    // }
-
     get_coordinate(){
+        /*
+            return a object with key: coordinate - value: a case of a ship
+        */
         let cases = {};
         this.ships.forEach(ship => {
             const ship_case = ship.get_ship_case();
@@ -28,6 +29,10 @@ class Grid{
     }
 
     in_hit_cases(coordinate){
+        /*
+            retourne true if coordinate is in the list's case of the player's grid
+            coordinate is a string like "x y"
+        */
         let result = false;
         if (this.hit_cases[coordinate] != undefined) {
             result = true;
@@ -36,13 +41,18 @@ class Grid{
     }
 
     add_hit_cases(data_case){
+        /*
+            add the case that was shooted by the enemy
+        */
         for(let key in data_case){
             this.hit_cases[key] = data_case[key];
         }
     }
 
     random_grid(){
-
+        /*
+            create a random grid at the start of the game
+        */
         const type_ship = {
             'carrier': 5,
             'battleship': 4,
@@ -54,17 +64,22 @@ class Grid{
         for (let key in type_ship){
             const ship = new Ship(key, type_ship[key]);
             let list_case;
+
+            //limit iteration
             let i = 0;
             while(i < 1000) { // can be replace by while true
-                const direction = Math.floor(Math.random() * 2);
+                //place horizontal or vertical ship
+                const direction = Math.floor(Math.random() * 2); 
                 let bound_x = this.length - type_ship[key] + 1;
                 let bound_y = this.length;
+                //vertical case
                 if ( direction == 1 ){
                     bound_x = this.length;
                     bound_y = this.length - type_ship[key] + 1;
                 }
                 const x = Math.floor(Math.random() * bound_x);
                 const y = Math.floor(Math.random() * bound_y);
+                //create object with key: coordinate of the ship - value: 'alive'
                 list_case = {};
                 for (let i = 0; i < type_ship[key]; i++){
                     if (direction == 1) list_case[`${x } ${y + i}`] = 'alive';
@@ -78,13 +93,16 @@ class Grid{
             ship.set_ship_case(list_case);
             this.ships.push(ship);
         }
-
+        //generation of a grid has failed
         if (this.ships.length !== 5) {
             throw "Can't generate a randomize grid. Too much iterations"
         }        
     }
 
     is_case_used(try_case){
+        /*
+            return true if a case is not used by a ship
+        */
         let result = false;
         for (let i = 0; i < this.ships.length; i++){
             if(this.ships[i].is_case_used(try_case)){
@@ -96,6 +114,9 @@ class Grid{
     }
 
     hit(coordinate){
+        /*
+            return data of the shot an check if the enemy hit the player's ships 
+        */
         let data = {
             shot: {},
             use: false,
@@ -108,7 +129,9 @@ class Grid{
     }
 
     random_hit(){
-        
+        /*
+            return data of a random shot by an AI
+        */
         let data;
         //don't iterate too much
         let i = 0;
@@ -149,6 +172,9 @@ class Grid{
     }
 
     check(data, coordinate){
+        /*
+            check if the shot hit something or is not already fired in a previous time
+        */
         if (!this.in_hit_cases(coordinate)){
             data.shot[coordinate] = "miss";
             for (let i = 0; i < this.ships.length; i++){
@@ -166,6 +192,9 @@ class Grid{
     }
 
     ships_destoy(){
+        /*
+            return true if the player's ships are destroy 
+        */
         let result = true;
         for (let i = 0; i < this.ships.length; i++){
             if(this.ships[i].get_health_point() !== 0){
