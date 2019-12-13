@@ -11,5 +11,5 @@ Here is the following technologies used:
 - OOP to implement the game
 - to think your OOP before coding with a UML diagram
 - libraries to use:
-..+ Express.js -> framework for web application
-..+ Socket.io ->  library for a real-time interaction between a client and web server
+. . + Express.js -> framework for web application
+. . + Socket.io ->  library for a real-time interaction between a client and web server
