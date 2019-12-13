@@ -2,7 +2,7 @@
     const SOCKET = io();
 
     let username = prompt("What's your name: ", 'guest');
-    if (username === "") {
+    if (username === "" || username == undefined || username == null) {
         username = 'guest';
     }
     SOCKET.emit('username', username);
