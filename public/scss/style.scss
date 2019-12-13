@@ -1,7 +1,15 @@
-$cell_color: #4899F7;
-$alive_color: #201D1D;
-$destroy_color: #BB2323;
-$enemy_color: #E1E0E0;
+$cell: #4899F7;
+$alive: #201D1D;
+$destroy: #BB2323;
+$enemy: #E1E0E0;
+$section: #642BDF;
+$contrast: #CEF5DE;
+
+body {
+    display: grid;
+    grid-template-rows: 20vh 60vh 20vh;
+    margin: 0;
+}
 
 table {
 
@@ -9,31 +17,60 @@ table {
         width: 30px;
         height: 30px;
         border: 1px;
-        background-color: $cell_color;
+        background-color: $cell;
         
         &.alive {
-            background-color: $alive_color;
+            background-color: $alive;
         }
 
         &.destroy {
-            background-color: $destroy_color;
+            background-color: $destroy;
         }
 
         &.miss {
             background: url('../img/miss_case.png')
         }
     }
-
-    &#enemy_field {
-        td:hover {
-            border-color: violet;
-        }
-    }
-    
 }
 
 div {
-    &#enemy {
-        background-color: $enemy_color;
+
+    &#game {
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: 50vw 50vw;
     }
+
+    &#settings {
+        grid-row: 3;
+        background-color: $section;
+    }
+}
+
+#title {
+    grid-row: 1;
+    background-color: $section;
+    color: $contrast;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#player {
+    grid-column: 1;
+}
+
+#enemy {
+    grid-column: 2;
+    background-color: $enemy;
+}
+
+h2 {
+    color: $section;
+}
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
