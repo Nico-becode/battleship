@@ -35,3 +35,10 @@ If i have time, i will:
 ![battleship game][mockups]
 
 [mockups]: public/img/mockups.png
+
+## UML
+
+old UML for representing the class
+![class diagram][uml]
+
+[uml]: public/img/uml.png
