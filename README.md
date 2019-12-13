@@ -44,7 +44,7 @@ old UML for representing the class:
 
 Update uml here:
 In construction
-![construction][construction]
+![][construction]
 
 [uml]: public/img/uml.png
 [construction]: https://media.giphy.com/media/l3vQYe7l1TInypnYA/giphy.gif
