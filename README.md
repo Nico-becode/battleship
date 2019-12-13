@@ -1,6 +1,6 @@
 # battleship
 
-you can see the project here
+you can see the project [here](https://battleship-first-strike.herokuapp.com/)
 
 ## The motivation
 
@@ -29,6 +29,7 @@ If i have time, i will:
 - Upgrade AI when playing solo
 - Place a battle log to see the historic of the game
 - put a help feature for player who doesn't know the rule of the game
+- design for mobile
 
 ## Mock-ups
 
@@ -47,6 +48,12 @@ In construction
 
 [uml]: public/img/uml.png
 [construction]: https://media.giphy.com/media/l3vQYe7l1TInypnYA/giphy.gif
+
+## Overview
+
+![battleship website][overview]
+
+[overview]: public/img/screenshot.png
 
 ## Front-end tool
 
