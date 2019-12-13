@@ -43,11 +43,12 @@ old UML for representing the class:
 ![class diagram][uml]
 
 Update uml here:
+
 In construction
-![][construction]
+![construction][construction]
 
 [uml]: public/img/uml.png
-[construction]: https://media.giphy.com/media/l3vQYe7l1TInypnYA/giphy.gif
+[construction]: https://media.giphy.com/media/5pHGSivKMsgrm/giphy.gif
 
 ## Overview
 
