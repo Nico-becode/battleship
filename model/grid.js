@@ -24,7 +24,6 @@ class Grid{
                 cases[key] = ship_case[key];
             }
         });
-        cases = {...cases, ...this.hit_cases}
         return cases;
     }
 
@@ -99,14 +98,64 @@ class Grid{
     hit(coordinate){
         let data = {
             shot: {},
-            use: false
+            use: false,
+            win: false
         }
+        this.check(data, coordinate);
+
+        this.add_hit_cases(data.shot);
+        return data;
+    }
+
+    random_hit(){
+        
+        let data;
+        //don't iterate too much
+        let i = 0;
+        while (i < 100){
+            data = {
+                shot: {},
+                use: false,
+                win: false
+            }
+            const x = Math.floor(Math.random() * this.length);
+            const y = Math.floor(Math.random() * this.length);
+            const coordinate = `${x} ${y}`;
+            this.check(data, coordinate);
+            if (!data.use){
+                break;
+            }
+            i++;
+        }
+        //try cell one by one if too much iteration
+        if(i >= 100){
+            for (let k = 0; k < this.length; k++){
+                for (let l = 0; l < this.length; l++){
+                    data = {
+                        shot: {},
+                        use: false,
+                        win: false
+                    }
+                    const coordinate = `${k} ${l}`;
+                    this.check(data, coordinate);
+                    if (!data.use){
+                        break;
+                    }
+                }
+            }
+        }
+        this.add_hit_cases(data.shot);
+        return data;
+    }
+
+    check(data, coordinate){
         if (!this.in_hit_cases(coordinate)){
             data.shot[coordinate] = "miss";
             for (let i = 0; i < this.ships.length; i++){
                 if (this.ships[i].is_case_used(data.shot)){
                     data.shot[coordinate] = "destroy";
                     this.ships[i].dec_health_point();
+                    data.win = this.ships_destoy();
                     break;
                 }
             }
@@ -114,9 +163,17 @@ class Grid{
         else {
             data.use = true;
         }
+    }
 
-        this.add_hit_cases(data.shot);
-        return data;
+    ships_destoy(){
+        let result = true;
+        for (let i = 0; i < this.ships.length; i++){
+            if(this.ships[i].get_health_point() !== 0){
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 }
 

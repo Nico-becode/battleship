@@ -29,6 +29,7 @@ class Ship{
     }
 
     dec_health_point(){ this.health_point--;}
+    get_health_point(){return this.health_point;}
 }
 
 module.exports = {

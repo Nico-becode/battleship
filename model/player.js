@@ -13,6 +13,8 @@ class Player{
     //     console.log(this.grid);
     // }
 
+    get_name(){return this.name;}
+
     get_grid() {
         return this.grid.get_coordinate();
     }
@@ -23,6 +25,9 @@ class Player{
     hit(coordinate){
         const data = this.grid.hit(coordinate);
         return data;
+    }
+    random_hit(){
+        return this.grid.random_hit();
     }
 };
 

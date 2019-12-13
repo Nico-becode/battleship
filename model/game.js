@@ -6,6 +6,10 @@ class Game {
         this.turn = null;
     }
 
+    get_name(player){
+        return this.players[player].get_name();
+    }
+
     add_player(player, username){
         this.players[player] = new Player(username);
 
@@ -26,6 +30,10 @@ class Game {
     }
     shoot(coordinate, player) {
         return this.players[player].hit(coordinate);
+    }
+
+    random_shot(player){
+        return this.players[player].random_hit();
     }
 };
 

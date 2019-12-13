@@ -9,6 +9,7 @@ const IO = require('socket.io').listen(SERVER);
 const ENT = require('ent');
 
 const PORT = 8769;
+let count = 0;
 
 const createGame = (username) => {
         const game = new Game();
@@ -34,23 +35,51 @@ IO.sockets.on('connection', (socket) => {
         game = createGame(username);
         const grid = game.get_grid(0);
         socket.emit('diplay_grid', JSON.stringify(grid));
+        // const test = game.players[1].grid.ships;
+        // socket.emit('test', JSON.stringify(test));
     });
 
     socket.on('shot', (coordinate) => {
         const shot = game.shoot(coordinate, 1);
-        console.log(shot, coordinate);
-
         if (!shot.use){
             socket.emit('display_shoot', JSON.stringify(shot.shot));
+            if(shot.win){
+                win(0);
+            }
+            else {
+                enemy_turn(game);
+            }
         }
         else {
-            //player retry his shoot
+            player_turn();
         }
+        
+    });
+
+    const player_turn = () => {
         const data = {
             turn: true
         }
         socket.emit('your_turn', JSON.stringify(data));
-    });
+    };
+
+    const enemy_turn = (game) => {
+        const shot = game.random_shot(0);
+        count++;
+        socket.emit('enemy_shot', JSON.stringify(shot.shot));
+        if (shot.win) {
+            win(1);
+        }
+        else {
+            player_turn()
+        }
+        
+    };
+
+    const win = (player) => {
+        const name = game.get_name(player);
+        socket.emit('win', name);
+    };
 });
 
 SERVER.listen(PORT, ()=>{

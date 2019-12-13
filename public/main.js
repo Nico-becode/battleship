@@ -21,6 +21,10 @@
         }
     });
 
+    // SOCKET.on('test', (json_test) => {
+    //     console.log(JSON.parse(json_test));
+    // });
+
     SOCKET.on('display_shoot', (json_shot) => {
         const shot = JSON.parse(json_shot);
         display_shot(shot);
@@ -29,6 +33,28 @@
     SOCKET.on('your_turn', (json_data) => {
         const data = JSON.parse(json_data);
         turn = data.turn;
+    });
+
+    SOCKET.on('enemy_shot', (json_data) => {
+        const shot = JSON.parse(json_data);
+        const own_field = document.querySelector('#own_field tbody');
+        for (let key in shot){
+            const coord = key.split(' ');
+            const x = parseInt(coord[0]), y = parseInt(coord[1]);
+            const cell = own_field.children[x].children[y];
+            switch(shot[key]){
+                case 'miss':
+                    cell.className = 'miss';
+                    break;
+                case 'destroy':
+                    cell.className = 'destroy';
+                    break;
+            }
+        }
+    });
+
+    SOCKET.on('win', (name) => {
+        alert(`${name} win`);
     });
 
     const shoot = (x, y) => {
@@ -61,7 +87,6 @@
             const $tr = $(event.target).closest('tr')
             const x = $tr[0].rowIndex;
             const y = $td[0].cellIndex;
-            console.log('hello')
             if (turn) {
                 turn = false;
                 shoot(x, y);
