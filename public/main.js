@@ -1,7 +1,10 @@
 (() => {
     const SOCKET = io();
 
-    const username = prompt("What's your name: ", 'guest');
+    let username = prompt("What's your name: ", 'guest');
+    if (username === "") {
+        username = 'guest';
+    }
     SOCKET.emit('username', username);
 
     SOCKET.on('diplay_grid', (json_grid) => {
