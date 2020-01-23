@@ -35,7 +35,7 @@ If i have time, i will:
 
 ![battleship game][mockups]
 
-[mockups]: public/img/mockups.png
+[mockups]: public/assets/img/mockups.png
 
 ## UML
 
@@ -47,14 +47,14 @@ Update uml here:
 In construction  
 ![construction][construction]
 
-[uml]: public/img/uml.png
+[uml]: public/assets/img/uml.png
 [construction]: https://media.giphy.com/media/5pHGSivKMsgrm/giphy.gif
 
 ## Overview
 
 ![battleship website][overview]
 
-[overview]: public/img/screenshot.png
+[overview]: public/assets/img/screenshot.png
 
 ## Front-end tool
 
